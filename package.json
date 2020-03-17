@@ -1,0 +1,17 @@
+{
+  "name": "cordovaPluginIap",
+  "version": "1.0.0",
+  "description": "",
+  "cordova": {
+    "id": "cordovaPluginIap",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "ISC"
+}

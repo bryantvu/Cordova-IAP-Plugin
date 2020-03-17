@@ -1,0 +1,8 @@
+// Example build-extras.gradle
+// This file is included at the beginning of `build.gradle`
+ext.cdvDebugSigningPropertiesFile = '../../android-debug-keys.properties'
+
+// When set, this function allows code to run at the end of `build.gradle`
+ext.postBuildExtras = {
+    android.buildTypes.debug.applicationIdSuffix = '.debug'
+}
