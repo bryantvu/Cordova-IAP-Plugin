@@ -53,4 +53,4 @@ cordova.plugins.IapWrapper.getNonConsumables(
 cordova run android
 ```
 
-<img src="images/demo.jpg" height="500"/>
+<img src="images/demo.jpg" height="600"/>
