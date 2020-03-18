@@ -37,7 +37,7 @@ Copy 'android-debug-keys.properties' and 'debug.p12' from plugin root folder to 
 ### Insert Demo Function
 Add to www/js/index.js
 
-<img src="images/index.png" height="300"/>
+<img src="images/index.png" height="400"/>
 
 ```javascript
 cordova.plugins.IapWrapper.getNonConsumables(
