@@ -52,3 +52,5 @@ cordova.plugins.IapWrapper.getNonConsumables(
 ```shell
 cordova run android
 ```
+
+<img src="images/demo.jpg" height="500"/>
