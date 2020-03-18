@@ -31,11 +31,12 @@ cordova plugin add /path/to/plugin/IapWrapper
 
 ### Copy Files
 Copy 'android-debug-keys.properties' and 'debug.p12' from plugin root folder to /platforms in project
-<img src="images/keystore.png" height="600"/>
+<img src="images/keystore.png" height="500"/>
 
 ### Insert Demo Function
 Add to www/js/index.js
-<img src="images/index.png" height="600"/>
+<img src="images/index.png" height="300"/>
+
 ```javascript
 cordova.plugins.IapWrapper.getNonConsumables(
                 success =>{
