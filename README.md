@@ -35,7 +35,7 @@ Copy 'android-debug-keys.properties' and 'debug.p12' from plugin root folder to 
 <img src="images/keystore.png" height="500"/>
 
 ### Insert Demo Function
-Add to www/js/index.js
+Add function to www/js/index.js and call from 'onDeviceReady: function()'
 
 <img src="images/index.png" height="400"/>
 
