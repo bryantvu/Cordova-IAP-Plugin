@@ -46,6 +46,7 @@ import android.content.Context;
 public class IapWrapper extends CordovaPlugin {
 
     private static final String NC_PRODUCTID = "NCProduct01";
+    private static final String S_PRODUCTID = "SProduct01";
 
     private IapClient mClient;
 
@@ -74,6 +75,11 @@ public class IapWrapper extends CordovaPlugin {
 //            callbackContext.success("execute >> buyNonConsumable");
 //            String message = args.getString(0);
             this.getNonConsumables();
+            return true;
+        }else if(action.equals("getSubscriptions")){
+//            callbackContext.success("execute >> buyNonConsumable");
+//            String message = args.getString(0);
+            this.getSubscriptions();
             return true;
         }
         callbackContext.error("execute >> method does not exist");
@@ -260,6 +266,55 @@ public class IapWrapper extends CordovaPlugin {
         void onSuccess(ProductInfoResult result);
 
         void onFail(Exception e);
+    }
+
+    private void getSubscriptions() {
+        System.out.println("getSubscriptions");
+        List<String> productIds = new ArrayList<>();
+        productIds.add(S_PRODUCTID);
+//        Log.e(TAG, "queryProducts: "+productIds.toString());
+        obtainProductInfo(mClient, productIds, IapClient.PriceType.IN_APP_SUBSCRIPTION, new ProductInfoCallback() {
+            @Override
+            public void onSuccess(final ProductInfoResult result) {
+                System.out.println("getSubscriptions >> onSuccess");
+                if (null == result) {
+//                    Log.e(TAG, "ProductInfoResult is null");
+                    return;
+                }
+
+                List<ProductInfo> productInfos = result.getProductInfoList();
+
+                JSONArray response = new JSONArray();
+                productInfos.forEach((skuDetails) ->{
+                    if (skuDetails != null) {
+                        JSONObject detailsJson = new JSONObject();
+                        try {
+                            detailsJson.put("productId", skuDetails.getProductId());
+                            detailsJson.put("title", skuDetails.getProductName());
+                            detailsJson.put("description", skuDetails.getProductDesc());
+                            //detailsJson.put("currency", skuDetails.getPriceCurrencyCode());
+                            detailsJson.put("price", skuDetails.getPrice());
+                            detailsJson.put("type", skuDetails.getPriceType());
+                            response.put(detailsJson);
+//                            Log.d(TAG, "queryProducts >> "+response);
+//                            callback.onSuccess(detailsJson);
+                            System.out.println("getSubscriptions >> onSuccess >> " + detailsJson);
+                        } catch (JSONException e) {
+//                            callbackContextPublic.error(e.getMessage());
+                            callbackContext.error("getSubscriptions >> Error >> "+e.getMessage());
+                        }
+                    }
+                });
+//                callbackContextPublic.success(response);
+//                view.showProducts(productInfos);
+            }
+
+            @Override
+            public void onFail(Exception e) {
+                callbackContext.error("getSubscriptions >> Error >> "+e.getMessage());
+
+            }
+        });
     }
 }
 
